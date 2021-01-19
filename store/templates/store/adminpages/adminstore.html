@@ -1,0 +1,29 @@
+{% extends 'store/adminpages/adminmain.html' %}
+{% load static %}
+{% block content %}
+{%if user.is_authenticated%}
+Welcome
+<strong>{{user.username}},</strong>
+<br />
+{%endif%}
+<div class="row">
+
+     {% for product in all_products %}
+     <div class="col-lg-4">
+          <img class="thumbnail" src="{{product.image.url}}">
+          <div class="box-element product">
+               <h6><strong>{{product.name}}</strong></h6>
+               <hr>
+               <a href="{% url 'updateproduct' product.id %}" class="btn btn-outline-secondary">Edit</a>
+               <a href="{% url 'deleteproduct' product.id %}" class="btn btn-outline-danger">Delete</a>
+
+               <h4 style="display: inline-block; float:right;"><strong>&#x20B9;{{product.price|floatformat:2}}</strong>
+               </h4>
+
+          </div>
+     </div>
+     {% endfor %}
+
+
+</div>
+{% endblock content %}

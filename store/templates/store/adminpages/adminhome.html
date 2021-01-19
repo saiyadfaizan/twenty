@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+    <title>Twenty-20</title>
+
+    <link rel="shortcut icon" type="image/png" href="/static/images/icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="{% url 'store' %}"><strong>Twenty-20</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+                <!--
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'store' %}">Visit Store <span class="sr-only">(current)</span></a>
+                </li>
+
+            -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'adminhome' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+
+
+            <div class="form-inline my-2 my-lg-0">
+
+                <a href="{%url 'logout'%}" class="btn btn-warning">Logout</a><br>
+
+            </div>
+
+            
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        {% block content %}
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3>All Orders</h3>
+                <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Order ID </th>
+                            <th>Customer</th>
+                            <th>Ordered On</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in allorders %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td><a href="{% url 'adminhome' %}">#ORDER_{{order.id}}</a></td>
+                            <td>{{order.customer}}</td>
+                            <td>{{order.date_ordered|date:"d M Y"}}</td>
+                            <td>{{order.get_cart_total|floatformat:2}}</td>
+                            <td>{{order.complete}}</td>
+                            <td><a href="{% url '' order.id %}">View Order</a></td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+        {% endblock content %}
+
+</body>
+
+</html>

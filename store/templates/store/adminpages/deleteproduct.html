@@ -1,0 +1,22 @@
+{% extends 'store/adminpages/adminmain.html' %}
+{% load static %}
+{% block content %}
+<div class="row box-element">
+    
+    <div class="center" >
+        <p> Are you sure you want to delete <b>"{{product}}"</b> ..?</p>
+        <div>
+        
+                <a class="btn btn-danger btn-sm" href="{% url 'adminallproduct' %}"> Cancel </a>
+                <form method="POST" action="" >
+                {% csrf_token %}
+                <br><input type="submit" class="btn btn-success btn-sm" value="Confirm" name="Confirm">
+                </form>
+            
+        
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

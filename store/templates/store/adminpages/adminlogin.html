@@ -1,0 +1,18 @@
+{% extends 'store/adminpages/adminmain.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element" style="width: 60%; margin: 0px auto; text-align: center;">
+				<form method="post" action="{% url 'adminlogin' %}">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type="submit" class="btn btn-success">Log in as Admin</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

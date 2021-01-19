@@ -1,0 +1,45 @@
+{% extends 'store/adminpages/adminmain.html' %}
+{% load static %}
+{% block content %}
+
+        
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3>All Orders</h3>
+                <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Order ID </th>
+                            <th>Customer</th>
+                            <th>Ordered On</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>#{{order.id}}</td>
+                            <td>{{order.customer}}</td>
+                            <td>{{order.date_ordered|date:"d M Y"}}</td>
+                            <td>{{order.get_cart_total|floatformat:2}}</td>
+                            <td>{{order.complete}}</td>
+                            <td><a href="{% url 'adminorderdetail' order.id %}">View Order</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+    
+
+        </div>
+
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'store/adminpages/adminmain.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="{% url 'adminallproduct' %}">&#x2190; Back to products</a>
+        <br>
+        <hr>
+
+            <form class="form" method="post" action="{% url 'adminaddproduct' %}" enctype="multipart/form-data">
+                <div class="form-group ">
+                    {% csrf_token %}
+                    {{ form |crispy }}
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

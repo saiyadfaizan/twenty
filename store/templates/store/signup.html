@@ -1,0 +1,26 @@
+{% extends 'store/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element" style="width: 80%; margin: 0px auto; ">
+				<form method="post" action="{% url 'signup' %}">
+					<h3>REGISTER BELOW</h3>
+					{% csrf_token %}
+					{{ form | crispy }}
+					<button type="submit" class="btn btn-success">Sign Up</button>
+				</form>
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already have an account? <a href="{% url 'login' %}" class="ml-2">Login here</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

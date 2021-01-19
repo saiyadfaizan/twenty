@@ -1,0 +1,5 @@
+store/__pycache__/
+api/__pycache__/
+ecom/__pycache__/
+.env
+.vscode/
